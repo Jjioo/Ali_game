@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Flag Quiz for Kids!</title>
+    <style>
+        body {
+            zoom: 90%;
+            font-family: 'Comic Sans MS', cursive;
+            background: linear-gradient(135deg, #6EE7B7, #3B82F6);
+            margin: 0;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .container {
+            width: 70%;
+            max-width: 1200px;
+        }
+
+        .game-container {
+            background: white;
+            border-radius: 20px;
+            padding: 20px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+            width: 100%;
+            text-align: center;
+            transform-style: preserve-3d;
+            transition: transform 0.3s;
+        }
+
+        .game-container:hover {
+            transform: scale(1.02) rotate(1deg);
+        }
+
+        .flag-image {
+            width: 200px;
+            height: 133px;
+            border: 5px solid #FCD34D;
+            border-radius: 10px;
+            margin: 20px 0;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            animation: float 3s ease-in-out infinite;
+            transition: filter 0.3s ease;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        @keyframes wrong-answer {
+            0%, 100% { filter: none; }
+            50% { filter: sepia(1) saturate(10000%) hue-rotate(-50deg); }
+        }
+
+        .options {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+            margin: 20px 0;
+        }
+
+        .option {
+            background: #60A5FA;
+            color: white;
+            border: none;
+            padding: 15px;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 16px;
+            font-family: inherit;
+            transition: all 0.3s;
+        }
+
+        .option:hover {
+            transform: scale(1.05);
+            background: #3B82F6;
+        }
+
+        .progress-container {
+            width: 100%;
+            background: #E5E7EB;
+            border-radius: 10px;
+            margin: 20px 0;
+        }
+
+        .progress-bar {
+            width: 0%;
+            height: 20px;
+            background: linear-gradient(90deg, #34D399, #10B981);
+            border-radius: 10px;
+            transition: width 0.5s;
+        }
+
+        .score {
+            font-size: 24px;
+            margin: 10px 0;
+            color: #1F2937;
+        }
+
+        .correct {
+            background: #34D399 !important;
+        }
+
+        .wrong {
+            background: #EF4444 !important;
+        }
+
+        
+/* Back Button */
+.back-button {
+    position: fixed;
+    bottom: 2rem;
+    left: 2rem;
+    background: white;
+    padding: 1rem 2rem;
+    border-radius: 30px;
+    text-decoration: none;
+    color: #333;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    box-shadow: 0 4px 0 rgba(0,0,0,0.1);
+    font-family: 'Bubblegum Sans', cursive;
+}
+
+.back-button:hover {
+    transform: scale(1.1);
+}
+
+.back-icon {
+    width: 30px;
+    height: 30px;
+}
+
+/* Wobble Animation */
+.wobble {
+    animation: wobble 2s infinite;
+}
+
+@keyframes wobble {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-5px) rotate(-5deg); }
+    75% { transform: translateX(5px) rotate(5deg); }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .rainbow-text {
+        font-size: 2rem;
+    }
+
+    .games-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+
+    .game-card {
+        padding: 1rem;
+    }
+
+    .icon {
+        width: 50px;
+        height: 50px;
+        font-size: 1.5rem;
+    }
+
+    .back-button {
+        bottom: 1rem;
+        left: 1rem;
+        padding: 0.8rem 1.5rem;
+    }
+}
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="game-container">
+            <h1>🌎 Flag Quiz! 🌎</h1>
+            <div class="score">Score: <span id="correct">0</span> / <span id="total">0</span></div>
+            <img id="flag" class="flag-image" src="/api/placeholder/200/133" alt="Flag">
+            <div class="progress-container">
+                <div class="progress-bar" id="progress"></div>
+            </div>
+            <div class="options" id="options"></div>
+        </div>
+    </div>
+
+    <!-- Add audio elements -->
+    <audio id="correctSound" src="/flags/sounds/correct.mp3"></audio>
+    <audio id="wrongSound" src="/flags/sounds/wrong.mp3"></audio>
+    <a href="/menu/menu.html" class="back-button wobble">
+        <img src="/images/back.png" alt="Back" class="back-icon">
+        <span>Go Back!</span>
+    </a>
+    <script>
+        const flags = [
+            { image: '/flags/images/usa.png', country: 'United States' },
+            { image: '/flags/images/palastina.png', country: 'Palastina' },
+            { image: '/flags/images/japan.png', country: 'Japan' },
+            { image: '/flags/images/brazil.png', country: 'Brazil' },
+            { image: '/flags/images/saudi-arabia.png', country: 'Saudi Arabia' }
+        ];
+
+        let currentFlag = 0;
+        let correctAnswers = 0;
+        let totalQuestions = 0;
+        const MAX_QUESTIONS = 6;
+
+        function shuffleArray(array) {
+            for (let i = array.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [array[i], array[j]] = [array[j], array[i]];
+            }
+            return array;
+        }
+
+        function displayFlag() {
+            const flag = flags[currentFlag];
+            document.getElementById('flag').src = flag.image;
+            
+            let options = [flag.country];
+            while (options.length < 4) {
+                const randomFlag = flags[Math.floor(Math.random() * flags.length)];
+                if (!options.includes(randomFlag.country)) {
+                    options.push(randomFlag.country);
+                }
+            }
+            
+            options = shuffleArray(options);
+            
+            const optionsContainer = document.getElementById('options');
+            optionsContainer.innerHTML = '';
+            
+            options.forEach(option => {
+                const button = document.createElement('button');
+                button.className = 'option';
+                button.textContent = option;
+                button.onclick = () => checkAnswer(option, flag.country, button);
+                optionsContainer.appendChild(button);
+            });
+        }
+
+        function checkAnswer(selected, correct, button) {
+            totalQuestions++;
+            document.getElementById('total').textContent = totalQuestions;
+            
+            const buttons = document.querySelectorAll('.option');
+            buttons.forEach(btn => btn.disabled = true);
+            
+            if (selected === correct) {
+                correctAnswers++;
+                document.getElementById('correct').textContent = correctAnswers;
+                button.classList.add('correct');
+                playSound('correct');
+            } else {
+                button.classList.add('wrong');
+                buttons.forEach(btn => {
+                    if (btn.textContent === correct) {
+                        btn.classList.add('correct');
+                    }
+                });
+                playSound('wrong');
+            }
+
+            updateProgress();
+            
+            setTimeout(() => {
+                if (totalQuestions >= MAX_QUESTIONS) {
+                    endGame();
+                } else {
+                    currentFlag = (currentFlag + 1) % flags.length;
+                    displayFlag();
+                }
+            }, 1500);
+        }
+
+        function updateProgress() {
+            const progress = (correctAnswers / totalQuestions) * 100;
+            document.getElementById('progress').style.width = progress + '%';
+        }
+
+        function playSound(type) {
+            const sound = document.getElementById(type + 'Sound');
+            sound.currentTime = 0;
+            sound.play();
+            
+            if (type === 'wrong') {
+                const flagImage = document.getElementById('flag');
+                flagImage.style.animation = 'wrong-answer 0.5s';
+                setTimeout(() => {
+                    flagImage.style.animation = 'float 3s ease-in-out infinite';
+                }, 500);
+            }
+        }
+
+        function endGame() {
+            const optionsContainer = document.getElementById('options');
+            optionsContainer.innerHTML = '';
+            
+            const resultMessage = document.createElement('h2');
+            resultMessage.style.marginBottom = '20px';
+            
+            if (correctAnswers === MAX_QUESTIONS) {
+                resultMessage.textContent = `Congratulations! Perfect score: ${correctAnswers}/${MAX_QUESTIONS}`;
+            } else {
+                resultMessage.textContent = `Game Over! Your score is: ${correctAnswers}/${MAX_QUESTIONS}`;
+            }
+            
+            optionsContainer.appendChild(resultMessage);
+            
+            const playAgainBtn = document.createElement('button');
+            playAgainBtn.className = 'option';
+            playAgainBtn.style.gridColumn = '1 / -1';  // Make button span full width
+            playAgainBtn.textContent = 'Play Again';
+            playAgainBtn.onclick = resetGame;
+            optionsContainer.appendChild(playAgainBtn);
+        }
+
+        function resetGame() {
+            currentFlag = 0;
+            correctAnswers = 0;
+            totalQuestions = 0;
+            document.getElementById('correct').textContent = '0';
+            document.getElementById('total').textContent = '0';
+            document.getElementById('progress').style.width = '0%';
+            displayFlag();
+        }
+
+        displayFlag();
+    </script>
+</body>
+</html>

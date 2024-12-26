@@ -1,0 +1,450 @@
+/* Fun Variables */
+:root {
+    --pink: #FF69B4;
+    --yellow: #FFD700;
+    --blue: #00BFFF;
+    --green: #98FB98;
+    --purple: #DDA0DD;
+    --orange: #FFA500;
+    /* Dark mode colors */
+    --dark-bg: #1a1f3c;
+    --dark-card: #2a2f4c;
+    --dark-text: #fff;
+    --dark-accent: #ff7b00;
+    /* Theme transition */
+    --transition-time: 0.3s;
+}
+
+/* Base Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    zoom: 90%;
+    font-family: 'Comic Neue', cursive;
+    background: #f0f9ff;
+    min-height: 100vh;
+    overflow-x: hidden;
+    background-image: 
+        radial-gradient(circle at 20% 20%, var(--pink) 1px, transparent 1px),
+        radial-gradient(circle at 80% 40%, var(--yellow) 1px, transparent 1px),
+        radial-gradient(circle at 40% 60%, var(--blue) 1px, transparent 1px),
+        radial-gradient(circle at 70% 80%, var(--green) 1px, transparent 1px);
+    background-size: 50px 50px;
+}
+
+/* Floating Bubbles Animation */
+.floating-bubbles {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 1;
+}
+
+.floating-bubbles::before {
+    content: '';
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    background: rgba(255, 255, 255, 0.5);
+    border-radius: 50%;
+    box-shadow: 
+        100px 200px var(--pink),
+        300px 100px var(--yellow),
+        500px 300px var(--blue),
+        700px 150px var(--green),
+        900px 250px var(--purple);
+    animation: float 15s linear infinite;
+}
+
+@keyframes float {
+    0% { transform: translateY(100vh) scale(0); }
+    100% { transform: translateY(-100vh) scale(1); }
+}
+
+/* Container */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 1rem;
+    position: relative;
+    z-index: 2;
+    width: 100%;
+}
+
+/* Rainbow Title */
+.rainbow-text {
+    font-family: 'Bubblegum Sans', cursive;
+    text-align: center;
+    font-size: clamp(2rem, 5vw, 3rem);
+    margin-bottom: 1.5rem;
+    background: linear-gradient(
+        45deg,
+        var(--pink),
+        var(--yellow),
+        var(--blue),
+        var(--green),
+        var(--purple),
+        var(--orange)
+    );
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    animation: rainbow 3s ease-in-out infinite;
+    text-shadow: 3px 3px 0px rgba(0,0,0,0.1);
+}
+
+@keyframes rainbow {
+    0% { filter: hue-rotate(0deg); }
+    100% { filter: hue-rotate(360deg); }
+}
+
+/* Games Grid */
+.games-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+    padding: 0.5rem;
+}
+
+/* Game Cards */
+.game-card {
+    background: white;
+    border-radius: 20px;
+    padding: 1rem;
+    text-decoration: none;
+    color: #333;
+    text-align: center;
+    transition: transform 0.3s ease;
+    box-shadow: 0 8px 0 rgba(0,0,0,0.1);
+    position: relative;
+    overflow: hidden;
+}
+
+.game-card:hover {
+    transform: translateY(-5px);
+}
+
+.game-card:active {
+    transform: translateY(3px);
+    box-shadow: 0 5px 0 rgba(0,0,0,0.1);
+}
+
+/* Card Colors */
+.flag-card { background: var(--pink); }
+.number-card { background: var(--yellow); }
+.sentence-card { background: var(--blue); }
+.family-card { background: var(--green); }
+.season-card { background: var(--purple); }
+.memory-card { background: var(--orange); }
+.related-card { background :#1a1f3c}
+.writing-card { background :#03f584}
+
+.card-inner {
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 15px;
+    padding: 1rem;
+    height: 100%;
+}
+
+/* Icons */
+.icon {
+    width: 70px;
+    height: 70px;
+    background: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 1rem;
+    font-size: 2rem;
+    box-shadow: 0 4px 0 rgba(0,0,0,0.1);
+}
+
+.flag-card .icon { color: var(--pink); }
+.number-card .icon { color: var(--yellow); }
+.sentence-card .icon { color: var(--blue); }
+.family-card .icon { color: var(--green); }
+.season-card .icon { color: var(--purple); }
+.memory-card .icon { color: var(--orange); }
+
+/* Bounce Animation */
+.bounce {
+    animation: bounce 2s infinite;
+}
+
+@keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+}
+
+/* Card Text */
+.game-card h2 {
+    font-family: 'Bubblegum Sans', cursive;
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.game-card p {
+    font-size: 1rem;
+    opacity: 0.8;
+}
+
+/* Back Button */
+.back-button {
+    position: fixed;
+    bottom: 2rem;
+    left: 2rem;
+    background: white;
+    padding: 1rem 2rem;
+    border-radius: 30px;
+    text-decoration: none;
+    color: #333;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    box-shadow: 0 4px 0 rgba(0,0,0,0.1);
+    font-family: 'Bubblegum Sans', cursive;
+}
+
+.back-button:hover {
+    transform: scale(1.1);
+}
+
+.back-icon {
+    width: 30px;
+    height: 30px;
+}
+
+/* Wobble Animation */
+.wobble {
+    animation: wobble 2s infinite;
+}
+
+@keyframes wobble {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-5px) rotate(-5deg); }
+    75% { transform: translateX(5px) rotate(5deg); }
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+    .games-grid {
+        grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    }
+    
+    .icon {
+        width: 60px;
+        height: 60px;
+        font-size: 1.75rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .container {
+        padding: 0.75rem;
+    }
+
+    .games-grid {
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+        gap: 0.75rem;
+    }
+
+    .game-card {
+        padding: 0.75rem;
+    }
+
+    .card-inner {
+        padding: 0.75rem;
+    }
+
+    .icon {
+        width: 50px;
+        height: 50px;
+        font-size: 1.5rem;
+    }
+
+    .game-card h2 {
+        font-size: 1.25rem;
+    }
+
+    .game-card p {
+        font-size: 0.9rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .container {
+        padding: 0.5rem;
+    }
+
+    .games-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 0.5rem;
+    }
+
+    .game-card {
+        padding: 0.5rem;
+    }
+
+    .card-inner {
+        padding: 0.5rem;
+    }
+
+    .icon {
+        width: 40px;
+        height: 40px;
+        font-size: 1.25rem;
+        margin-bottom: 0.5rem;
+    }
+
+    .game-card h2 {
+        font-size: 1rem;
+        margin-bottom: 0.25rem;
+    }
+
+    .game-card p {
+        font-size: 0.8rem;
+    }
+
+    .back-button {
+        padding: 0.5rem 1rem;
+        font-size: 0.9rem;
+    }
+
+    .back-icon {
+        width: 20px;
+        height: 20px;
+    }
+}
+
+/* Add support for larger screens */
+@media (min-width: 1440px) {
+    .games-grid {
+        grid-template-columns: repeat(4, 1fr);
+        max-width: 1400px;
+        margin: 0 auto;
+    }
+}
+
+/* Add touch device optimizations */
+@media (hover: none) {
+    .game-card:hover {
+        transform: none;
+    }
+
+    .game-card:active {
+        transform: translateY(3px);
+    }
+
+    .game-card::before {
+        display: none;
+    }
+}
+
+/* Fun hover effects */
+.game-card::before {
+    content: '🎮';
+    position: absolute;
+    top: -20px;
+    right: -20px;
+    font-size: 2rem;
+    opacity: 0;
+    transition: all 0.3s ease;
+    transform: rotate(45deg);
+}
+
+.game-card:hover::before {
+    opacity: 1;
+    top: 10px;
+    right: 10px;
+}
+
+/* Add theme toggle button styles */
+.theme-toggle {
+    position: fixed;
+    top: 1rem;
+    right: 1rem;
+    background: white;
+    border: none;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    cursor: pointer;
+    box-shadow: 0 4px 0 rgba(0,0,0,0.1);
+    z-index: 1000;
+    transition: var(--transition-time) ease;
+}
+
+.theme-toggle i {
+    font-size: 1.5rem;
+    color: #333;
+    transition: var(--transition-time) ease;
+}
+
+.theme-toggle:hover {
+    transform: scale(1.1);
+}
+
+/* Dark mode styles */
+body.dark-mode {
+    background: var(--dark-bg);
+    background-image: 
+        radial-gradient(circle at 20% 20%, var(--dark-accent) 1px, transparent 1px),
+        radial-gradient(circle at 80% 40%, var(--dark-accent) 1px, transparent 1px),
+        radial-gradient(circle at 40% 60%, var(--dark-accent) 1px, transparent 1px),
+        radial-gradient(circle at 70% 80%, var(--dark-accent) 1px, transparent 1px);
+    background-size: 50px 50px;
+}
+
+body.dark-mode .theme-toggle {
+    background: var(--dark-card);
+}
+
+body.dark-mode .theme-toggle i {
+    color: var(--dark-accent);
+}
+
+body.dark-mode .game-card {
+    background: var(--dark-card);
+    color: var(--dark-text);
+    box-shadow: 0 8px 0 rgba(0,0,0,0.2);
+}
+
+body.dark-mode .card-inner {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+body.dark-mode .icon {
+    background: var(--dark-bg);
+    color: var(--dark-accent);
+}
+
+body.dark-mode .back-button {
+    background: var(--dark-card);
+    color: var(--dark-text);
+}
+
+/* Add smooth transitions */
+body, .game-card, .card-inner, .icon, .back-button {
+    transition: background-color var(--transition-time) ease,
+                color var(--transition-time) ease,
+                box-shadow var(--transition-time) ease;
+}
+
+@media (max-width: 768px) {
+    .theme-toggle {
+        width: 40px;
+        height: 40px;
+    }
+    
+    .theme-toggle i {
+        font-size: 1.25rem;
+    }
+}

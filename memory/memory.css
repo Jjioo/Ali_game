@@ -1,0 +1,335 @@
+body {
+   zoom: 60%;
+    background: linear-gradient(45deg, #6c5ce7, #a8e6cf);
+    margin: 0;
+    min-height: 100vh;
+    font-family: 'Comic Sans MS', cursive;
+    overflow: hidden;
+    perspective: 1000px;
+ }
+ 
+ .game-wrapper {
+    width: 90%;
+    max-width: 1200px;
+    margin: 2rem auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.game-board-container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    padding: 2rem 0;
+}
+
+
+ @keyframes float {
+    0%, 100% { transform: translateY(0) rotateX(3deg); }
+    50% { transform: translateY(-20px) rotateX(5deg); }
+ }
+ 
+ .game-header {
+    text-align: center;
+    margin-bottom: 2rem;
+ }
+ 
+ .game-title {
+    color: #fff;
+    font-size: 3.5rem;
+    text-shadow: 0 0 10px rgba(0,0,0,0.2);
+    animation: titlePop 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+ }
+ 
+ @keyframes titlePop {
+    0% { transform: scale(0); }
+    100% { transform: scale(1); }
+ }
+ 
+ .game-board {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+    gap: 10px;
+    perspective: 1000px;
+ }
+ 
+ .level-1 { grid-template-columns: repeat(2, 1fr); }
+ .level-2 { grid-template-columns: repeat(4, 1fr); }
+ .level-3 { grid-template-columns: repeat(4, 1fr); }
+ 
+ .card {
+    width: 40px;
+    height: 40px;
+    position: relative;
+    perspective: 1000px;
+    margin: 10px;
+ }
+ 
+ .card:hover {
+    animation: cardHover 0.3s ease infinite alternate;
+ }
+ 
+ @keyframes cardHover {
+    0% { transform: translateZ(20px) rotateX(5deg); }
+    100% { transform: translateZ(40px) rotateX(-5deg); }
+ }
+ 
+ .card.flipped .card-inner {
+    transform: rotateY(180deg);
+    animation: matchWiggle 0.5s ease-in-out;
+ }
+ 
+ @keyframes matchWiggle {
+    0%, 100% { transform: rotateY(180deg) scale(1); }
+    50% { transform: rotateY(180deg) scale(1.1); }
+ }
+ 
+ .card-inner {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    transition: transform 0.6s;
+    transform-style: preserve-3d;
+ }
+ 
+ .card-front, .card-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.2);
+ }
+ 
+ .card-front {
+    background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+ }
+ 
+ .card-back {
+    background-size: cover;
+    background-position: center;
+    transform: rotateY(180deg);
+ }
+ 
+ .stats-container {
+    display: flex;
+    justify-content: space-around;
+    margin: 3rem 0;
+    padding: 0rem;
+ }
+ 
+ .stat {
+    background: rgba(255,255,255,0.2);
+    padding: 1rem 2rem;
+    border-radius: 20px;
+    backdrop-filter: blur(5px);
+    color: white;
+    transform: translateZ(30px);
+    animation: statFloat 3s ease-in-out infinite;
+ }
+ 
+ @keyframes statFloat {
+    0%, 100% { transform: translateY(0) translateZ(30px); }
+    50% { transform: translateY(-10px) translateZ(40px); }
+ }
+ 
+ .progress-bar {
+    height: 30px;
+    background: rgba(255,255,255,0.2);
+    border-radius: 15px;
+    overflow: hidden;
+    backdrop-filter: blur(5px);
+ }
+ 
+ .progress {
+    height: 100%;
+    background: linear-gradient(90deg, #a8e6cf, #6c5ce7);
+    transition: width 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    animation: progressPulse 2s ease-in-out infinite;
+ }
+ 
+ @keyframes progressPulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.8; }
+ }
+ 
+ #restart {
+    background: linear-gradient(45deg, #ff9a9e, #fad0c4);
+    border: none;
+    padding: 1rem 2rem;
+    border-radius: 30px;
+    color: white;
+    font-size: 1.2rem;
+    cursor: pointer;
+    transform: translateZ(20px);
+    transition: all 0.3s;
+    animation: buttonPulse 2s infinite;
+ }
+ 
+ @keyframes buttonPulse {
+    0%, 100% { transform: scale(1) translateZ(20px); }
+    50% { transform: scale(1.05) translateZ(30px); }
+ }
+ 
+ .firework {
+    position: fixed;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    animation: firework 1s ease-out;
+    transform-origin: center;
+ }
+ 
+ @keyframes firework {
+    0% { 
+        transform: scale(0) rotate(0deg);
+        opacity: 1;
+    }
+    100% { 
+        transform: scale(40) rotate(360deg);
+        opacity: 0;
+    }
+ }
+ 
+ .back-button {
+    position: fixed;
+    bottom: 2rem;
+    left: 2rem;
+    background: rgba(255,255,255,0.2);
+    backdrop-filter: blur(5px);
+    padding: 1rem 2rem;
+    border-radius: 30px;
+    color: white;
+    text-decoration: none;
+    transform: translateZ(40px);
+    animation: backFloat 3s ease-in-out infinite;
+ }
+ 
+ @keyframes backFloat {
+    0%, 100% { transform: translateY(0) translateZ(40px); }
+    50% { transform: translateY(-10px) translateZ(50px); }
+ }
+ 
+ @media (max-width: 768px) {
+    .game-title {
+        font-size: 2rem;
+    }
+    
+    .stats-container {
+        flex-direction: column;
+        gap: 1rem;
+    }
+    
+    .back-button {
+        bottom: 1rem;
+        left: 1rem;
+    }
+ }
+ 
+ .level-1 .card {
+    width: 200px;
+    height: 200px;
+    margin: 5px;
+ }
+
+ .level-2 .card {
+    width: 200px;
+    height: 200px;
+    margin: 5px;}
+ 
+
+ 
+    .level-3 .card {
+      width: 60px;
+      height: 60px;
+      margin: 5px;}
+    
+
+/* Flip effect */
+.card.flipped .card-inner {
+    transform: rotateY(180deg); /* Rotate the inner card on flip */
+}
+
+/* Ensure the back is hidden when flipped */
+.card-back {
+    transform: rotateY(180deg); /* Initially hide the back */
+}
+
+.level-message {
+    text-align: center;
+    font-size: 1.5rem;
+    color: #fff;
+    margin: 1rem 0;
+    animation: fadeIn 0.5s ease-in-out; /* Optional animation */
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+
+/* Back Button */
+.back-button {
+    position: fixed;
+    bottom: 2rem;
+    left: 2rem;
+    background: white;
+    padding: 1rem 2rem;
+    border-radius: 30px;
+    text-decoration: none;
+    color: #333;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    box-shadow: 0 4px 0 rgba(0,0,0,0.1);
+    font-family: 'Bubblegum Sans', cursive;
+}
+
+.back-button:hover {
+    transform: scale(1.1);
+}
+
+.back-icon {
+    width: 30px;
+    height: 30px;
+}
+
+/* Wobble Animation */
+.wobble {
+    animation: wobble 2s infinite;
+}
+
+@keyframes wobble {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-5px) rotate(-5deg); }
+    75% { transform: translateX(5px) rotate(5deg); }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .rainbow-text {
+        font-size: 2rem;
+    }
+
+    .games-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+
+    .game-card {
+        padding: 1rem;
+    }
+
+    .icon {
+        width: 50px;
+        height: 50px;
+        font-size: 1.5rem;
+    }
+
+    .back-button {
+        bottom: 1rem;
+        left: 1rem;
+        padding: 0.8rem 1.5rem;
+    }
+}

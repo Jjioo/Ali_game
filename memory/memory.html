@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Memory Game</title>
+   <link rel="stylesheet" href="memory.css">
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="game-wrapper">
+        <header class="game-header">
+            <h1 class="game-title">Super Fun Memory Match!</h1>
+            <div class="game-controls">
+                <button id="restart" class="game-button"><i class="fas fa-redo"></i> Restart</button>
+            </div>
+        </header>
+        
+        <div class="game-content">
+            <div class="game-info">
+                <div class="level-container">
+                    <h2>Level: <span id="current-level">1</span></h2>
+                    <div class="progress-bar">
+                        <div class="progress"></div>
+                    </div>
+                </div>
+                <div class="stats-container">
+                    <div class="stat">
+                        <i class="fas fa-clock"></i>
+                        <span id="timer">00:00</span>
+                    </div>
+                    <div class="stat">
+                        <i class="fas fa-mouse-pointer"></i>
+                        <span id="moves">0</span> Moves
+                    </div>
+                    <div class="stat">
+                        <i class="fas fa-star"></i>
+                        <span id="matches">0</span> Matches
+                    </div>
+                </div>
+            </div>
+            
+            <div class="game-board-container">
+                <div class="game-board"></div>
+            </div>
+            
+            <div id="score" class="score-display"></div>
+        </div>
+    </div>
+
+    <div class="sound-effects">
+        <audio id="flipSound" src="sounds/flip.mp3" preload="auto"></audio>
+        <audio id="matchSound" src="sounds/match.mp3" preload="auto"></audio>
+        <audio id="successSound" src="sounds/success.mp3" preload="auto"></audio>
+    </div>
+    
+  
+
+    <a href="/menu/menu.html" class="back-button wobble">
+        <img src="/images/back.png" alt="Back" class="back-icon">
+        <span>Go Back!</span>
+    </a>
+
+    <script src="/memory/memory.js"></script>
+</body>
+</html>

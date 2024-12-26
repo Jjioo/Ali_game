@@ -1,0 +1,186 @@
+body {
+    background-color: #E0F6FF; /* Light blue background */
+    font-family: 'Comic Sans MS', cursive, sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+.music-container {
+    width: 90%;
+    max-width: 800px;
+    background: #fff;
+    border-radius: 20px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    box-sizing: border-box;
+    position: relative;
+}
+
+.player-header {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.song-player-title {
+    color: #FF6B6B; /* Bright pink for title */
+    font-size: 2em;
+    animation: bounce 3s infinite;
+}
+
+@keyframes bounce {
+    0%, 20%, 50%, 80%, 100% {transform: translateY(0);}
+    40% {transform: translateY(-30px);}
+    60% {transform: translateY(-15px);}
+}
+
+.player-content {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.video-player {
+    width: 100%;
+    height: 0;
+    padding-bottom: 56.25%; /* 16:9 aspect ratio */
+    position: relative;
+}
+
+#youtube-player {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.lyrics-section {
+    background: #F3E5F5; /* Lavender for lyrics background */
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+#song-title {
+    color: #4A148C; /* Deep purple for song title */
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.lyrics-display {
+    max-height: 200px;
+    overflow-y: auto;
+    text-align: center;
+}
+
+#song-lyrics {
+    line-height: 1.6;
+}
+
+.control-buttons {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+.navigation-btn {
+    background: #FFCC80; /* Soft orange for buttons */
+    color: #4A148C; /* Deep purple for text */
+    border: none;
+    padding: 10px 20px;
+    font-size: 1em;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.navigation-btn:hover {
+    background: #FFA07A; /* Light salmon on hover */
+    transform: scale(1.05);
+}
+
+.back-to-menu {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+}
+
+.back-icon {
+    width: 40px;
+    height: 40px;
+    transition: transform 0.3s;
+}
+
+.back-icon:hover {
+    transform: scale(1.1);
+}
+
+
+/* Back Button */
+.back-button {
+    position: fixed;
+    bottom: 2rem;
+    left: 2rem;
+    background: white;
+    padding: 1rem 2rem;
+    border-radius: 30px;
+    text-decoration: none;
+    color: #333;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    box-shadow: 0 4px 0 rgba(0,0,0,0.1);
+    font-family: 'Bubblegum Sans', cursive;
+}
+
+.back-button:hover {
+    transform: scale(1.1);
+}
+
+.back-icon {
+    width: 30px;
+    height: 30px;
+}
+
+/* Wobble Animation */
+.wobble {
+    animation: wobble 2s infinite;
+}
+
+@keyframes wobble {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-5px) rotate(-5deg); }
+    75% { transform: translateX(5px) rotate(5deg); }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .rainbow-text {
+        font-size: 2rem;
+    }
+
+    .games-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+
+    .game-card {
+        padding: 1rem;
+    }
+
+    .icon {
+        width: 50px;
+        height: 50px;
+        font-size: 1.5rem;
+    }
+
+    .back-button {
+        bottom: 1rem;
+        left: 1rem;
+        padding: 0.8rem 1.5rem;
+    }
+}

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Family Activities Learning Game</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Comic+Neue:wght@700&family=Bubblegum+Sans&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/Family/styles/style.css">
+</head>
+<body>
+    <div class="floating-stars"></div>
+    
+    <!-- Learning Mode Section -->
+    <div id="learning-mode" class="game-container">
+        <h1 class="rainbow-title">Let's Learn About Family! 👨‍👩‍👧‍👦</h1>
+        
+        <div class="card-container">
+            <div class="navigation-btn prev-btn" onclick="previousCard()">
+                <i class="fas fa-chevron-left"></i>
+            </div>
+            
+            <div class="family-card">
+                <div class="card-inner">
+                    <img id="family-image" src="" alt="Family Activity">
+                    <p id="description" class="description"></p>
+                </div>
+                <div class="progress-dots"></div>
+            </div>
+            
+            <div class="navigation-btn next-btn" onclick="nextCard()">
+                <i class="fas fa-chevron-right"></i>
+            </div>
+        </div>
+        
+        <button id="start-test" class="rainbow-button" onclick="startTest()">
+            Ready to Play? Start the Game! 🎮
+        </button>
+    </div>
+
+    <!-- Test Mode Section -->
+    <div id="test-mode" class="game-container hidden">
+        <h1 class="rainbow-title">What's Happening Here? 🤔</h1>
+        
+        <div class="test-card">
+            <img id="test-image" src="" alt="Family Activity">
+            <div id="choices-container" class="choices-container"></div>
+            <div id="feedback" class="feedback"></div>
+        </div>
+        
+        <button class="rainbow-button" onclick="returnToLearning()">
+            Back to Learning! 📚
+        </button>
+    </div>
+
+    <a href="/menu/menu.html" class="back-button wobble">
+        <img src="/images/back.png" alt="Back" class="back-icon">
+        <span>Go Back!</span>
+    </a>
+</body>
+<script src="scripts/script.js"></script>
+</html>

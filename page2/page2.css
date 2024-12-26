@@ -1,0 +1,234 @@
+:root {
+    --dark-bg: #1a1f3c;
+    --dark-card: #2a2f4c;
+    --dark-text: #fff;
+    --dark-accent: #ff7b00;
+    --transition-time: 0.3s;
+}
+
+body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    background: #E0F6FF;
+    font-family: 'Arial';
+    transition: background-color var(--transition-time) ease;
+}
+
+.options-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+}
+
+.options-container h1 {
+    color: #FF6B6B; /* Bright pink for the title */
+    text-align: center;
+    font-size: 2em;
+    margin-bottom: 30px;
+    animation: bounce 3s infinite;
+}
+
+@keyframes bounce {
+    0%, 20%, 50%, 80%, 100% {transform: translateY(0);}
+    40% {transform: translateY(-30px);}
+    60% {transform: translateY(-15px);}
+}
+
+.options-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+    width: 100%;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.option-card {
+    background: #FFF;
+    border-radius: 15px;
+    text-decoration: none;
+    color: #000;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.option-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.2);
+}
+
+.icon {
+    background: #FFCC80; /* Soft orange for icons */
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 15px;
+}
+
+.icon i {
+    font-size: 40px;
+    color: #4A148C; /* Deep purple for contrast */
+}
+
+.option-card h2 {
+    text-align: center;
+    font-size: 1.2em;
+    color: #1A237E; /* Dark blue for text */
+    margin: 0;
+}
+
+
+/* Back Button */
+.back-button {
+    position: fixed;
+    bottom: 2rem;
+    left: 2rem;
+    background: white;
+    padding: 1rem 2rem;
+    border-radius: 30px;
+    text-decoration: none;
+    color: #333;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    box-shadow: 0 4px 0 rgba(0,0,0,0.1);
+    font-family: 'Comic Sans MS', cursive;
+}
+
+.back-button:hover {
+    transform: scale(1.1);
+}
+
+.back-icon {
+    width: 30px;
+    height: 30px;
+}
+
+/* Wobble Animation */
+.wobble {
+    animation: wobble 2s infinite;
+}
+
+@keyframes wobble {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-5px) rotate(-5deg); }
+    75% { transform: translateX(5px) rotate(5deg); }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .rainbow-text {
+        font-size: 2rem;
+    }
+
+    .games-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+
+    .game-card {
+        padding: 1rem;
+    }
+
+    .icon {
+        width: 50px;
+        height: 50px;
+        font-size: 1.5rem;
+    }
+
+    .back-button {
+        bottom: 1rem;
+        left: 1rem;
+        padding: 0.8rem 1.5rem;
+    }
+}
+
+/* Add the theme toggle button */
+.theme-toggle {
+    position: fixed;
+    top: 1rem;
+    right: 1rem;
+    background: white;
+    border: none;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    cursor: pointer;
+    box-shadow: 0 4px 0 rgba(0,0,0,0.1);
+    z-index: 1000;
+    transition: var(--transition-time) ease;
+}
+
+.theme-toggle i {
+    font-size: 1.5rem;
+    color: #333;
+    transition: var(--transition-time) ease;
+}
+
+.theme-toggle:hover {
+    transform: scale(1.1);
+}
+
+/* Dark mode styles */
+body.dark-mode {
+    background: var(--dark-bg);
+    background-image: 
+        radial-gradient(circle at 20% 20%, var(--dark-accent) 1px, transparent 1px),
+        radial-gradient(circle at 80% 40%, var(--dark-accent) 1px, transparent 1px),
+        radial-gradient(circle at 40% 60%, var(--dark-accent) 1px, transparent 1px),
+        radial-gradient(circle at 70% 80%, var(--dark-accent) 1px, transparent 1px);
+    background-size: 50px 50px;
+}
+
+body.dark-mode .theme-toggle {
+    background: var(--dark-card);
+}
+
+body.dark-mode .theme-toggle i {
+    color: var(--dark-accent);
+}
+
+body.dark-mode .options-container h1 {
+    color: var(--dark-accent);
+}
+
+body.dark-mode .option-card {
+    background: var(--dark-card);
+    color: var(--dark-text);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+}
+
+body.dark-mode .icon {
+    background: var(--dark-bg);
+}
+
+body.dark-mode .icon i {
+    color: var(--dark-accent);
+}
+
+body.dark-mode .option-card h2 {
+    color: var(--dark-text);
+}
+
+body.dark-mode .back-button {
+    background: var(--dark-card);
+    color: var(--dark-text);
+}
+
+/* Add transitions */
+.option-card, .icon, .back-button {
+    transition: background-color var(--transition-time) ease,
+                color var(--transition-time) ease,
+                box-shadow var(--transition-time) ease,
+                transform var(--transition-time) ease;
+}

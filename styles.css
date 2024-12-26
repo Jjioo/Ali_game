@@ -1,0 +1,631 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+    height: 100%;
+    font-family: 'Arial', sans-serif;
+    background-color: #ffdada;
+}
+
+
+
+.container {
+    width: 100%;
+    height: 100%;
+    padding: 5px;
+    background-color: #ffdada;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin: 0 auto; /* Centrer le conteneur */
+   
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Centre horizontalement */
+}
+.container-home {
+    
+    width: 100vw; /* 100% de la largeur de la fenêtre */
+    height: 100vh; /* 100% de la hauteur de la fenêtre */
+    padding: 5px;
+    background-image: url('/images/background.jpg'); /* Remplace par le chemin de ton image */
+    background-size: cover; /* L'image couvrira toute la surface tout en gardant ses proportions */
+    background-position: center; /* Centrer l'image */
+    background-repeat: no-repeat; /* Empêcher la répétition de l'image */
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin: 0 auto; /* Enlever la marge pour remplir toute la page */
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Centre horizontalement */
+    justify-content: center; /* Centre verticalement */
+}
+
+header h1 {
+    color: #ff6347;
+    font-size: 6em;
+    margin-bottom: 20px;
+    text-align: center; /* Centre le texte horizontalement */
+}
+
+.intro {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Centre horizontalement */
+    justify-content: center; /* Centre verticalement */
+    min-height: 400px; /* Ajuste la hauteur minimale pour le centrer */
+    text-align: center; /* Centre le texte horizontalement */
+}
+
+#container3D {
+    width: 100%;
+    height: 300px; /* Taille fixe pour le modèle 3D */
+    background-color: transparent;
+    margin-bottom: 20px;
+    margin-top: 20px;
+}
+
+.speech-bubble {
+    /*background-color: #fffacd;*/
+    /*border-radius: 25px;*/
+    padding: 10px;
+    font-size: 1.8em;
+    color: #333;
+    /*border: 2px solid #ff6347;*/
+    display: inline-block;
+    margin-top: 10px;
+    text-align: center; /* Centre le texte dans la bulle */
+}
+
+.message {
+    margin: 30px 0;
+    font-size: 1.5em;
+    color: #333;
+}
+
+.navigation {
+    margin-top: 20px;
+}
+
+
+.nav-button {
+    display: inline-block;
+    background-color: #ff6347;
+    color: white;
+    padding: 40px 120px; /* Agrandir le bouton */
+    border-radius: 50px; /* Bouton arrondi */
+    text-decoration: none;
+    margin: 60px;
+    transition: background-color 0.3s ease, transform 0.3s ease; /* Transition pour un effet au survol */
+    font-size: 3.1em; /* Agrandir le texte */
+    font-weight: bold;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5); /* Ajouter une ombre */
+    text-align: center;
+}
+
+.nav-button:hover {
+    background-color: #ff4500; /* Changer la couleur au survol */
+    transform: translateY(-30px) scale(1.4) rotate(0deg); /* Légèrement soulever le bouton au survol */
+}
+
+
+.nav-button-home {
+    display: inline-block;
+    background-color: #80a2ff;
+    color: rgb(0, 0, 0);
+    padding: 60px 120px; /* Agrandir encore le bouton */
+    border-radius: 20px; /* Bouton arrondi */
+    text-decoration: none;
+    margin-left: 1100px;
+    transition: background-color 0.4s ease, transform 0.4s ease, box-shadow 0.4s ease; /* Ajouter plus de transition pour fluidité */
+    font-size: 3.5em; /* Agrandir le texte */
+    font-weight: bold;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3); /* Accentuer l'ombre */
+    text-align: center;
+}
+
+.nav-button-home:hover {
+    background-color: #446ee4; /* Couleur plus vive au survol */
+    transform: translateY(-15px) scale(1.6) rotate(-8deg); /* Animer la montée, agrandissement, et légère rotation */
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4); /* Accentuer l'ombre au survol */
+    transition: transform 0.4s ease, box-shadow 0.4s ease; /* Fluidité dans la transition */
+    color: #f0f8ff;
+}
+
+.additional-content {
+    margin: 50px 0;
+}
+
+.additional-content h2 {
+    color: #333;
+    margin-bottom: 20px;
+    font-size: 2em;
+}
+
+.additional-content p {
+    font-size: 1.2em;
+    color: #555;
+    margin-bottom: 30px;
+}
+/* Other styles remain unchanged */
+
+.game-selection {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    margin-top: 50px;
+}
+
+.cloud-button {
+    display: inline-block;
+    width: 200px; /* Ensure all buttons have the same size */
+    height: 150px; /* Ensure all buttons have the same size */
+    background-color: #ffcccb; /* Light pink background */
+    color: #333;
+    font-size: 2.8em; /* Slightly smaller text for a more balanced look */
+    font-weight: bold;
+    padding: 120px 360px;
+    border-radius: 40px; /* Rounded corners */
+    box-shadow: 0px 10px 15px rgba(0, 0, 0, 0.15);
+    text-decoration: none;
+    border: none; /* No border for a clean look */
+    transition: all 0.3s ease;
+    margin: 30px;
+    position: relative;
+    cursor: pointer;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-image: linear-gradient(to bottom right, #ffebcd, #ffcccb); /* Gradient for a more colorful and vibrant look */
+}
+
+/* Hover effect for a more interactive experience */
+.cloud-button:hover {
+    background-image: linear-gradient(to bottom right, #ffb6c1, #ff7f7f); /* Brighter colors on hover */
+    transform: scale(1.1); /* Slightly larger on hover */
+    box-shadow: 0px 12px 20px rgba(0, 0, 0, 0.2); /* Enhanced shadow for depth */
+    color: #fff; /* White text on hover */
+}
+
+/* Add icons inside the buttons for a playful effect */
+.cloud-button:before {
+    content: '';
+    position: absolute;
+    background: url('cloud-icon.png') no-repeat center center; /* Replace with your cloud icon */
+    background-size: 60px 60px;
+    width: 60px;
+    height: 60px;
+    top: -40px; /* Position above the button */
+}
+
+/* Keeping the cloud shape effect */
+.cloud-button:before,
+.cloud-button:after {
+    content: '';
+    position: absolute;
+    background-color: rgba(255, 255, 255, 0.5);
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    z-index: -1;
+}
+
+.cloud-button:before {
+    top: -30px;
+    left: -20px;
+}
+
+.cloud-button:after {
+    top: -30px;
+    right: -20px;
+}
+/*-------------------------------*/
+
+/* Number Navigator specific styles */
+header {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.game-area {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 20px 0;
+}
+
+.number-box {
+    background-color: #87CEFA;
+    border-radius: 20px;
+    padding: 40px;
+    margin-bottom: 20px;
+    font-size: 3em;
+    color: white;
+    box-shadow: 0px 10px 15px rgba(0, 0, 0, 0.1);
+}
+
+.word-options {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px;
+}
+
+.word-button {
+    background-color: #ffebcd;
+    color: #333;
+    padding: 15px 30px;
+    border-radius: 10px;
+    border: none;
+    font-size: 1.5em;
+    transition: all 0.3s ease;
+    box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+}
+
+.word-button:hover {
+    background-color: #ffcccb;
+    transform: scale(1.1);
+}
+
+#feedback-message {
+    font-size: 1.2em;
+    margin-top: 20px;
+    font-weight: bold;
+}
+/*-------------------------------------------------*/
+
+
+
+
+
+.image-box {
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* Deux colonnes de taille égale */
+    grid-gap: 20px; /* Espace entre les colonnes */
+    justify-items: center; /* Centre le contenu dans chaque colonne */
+    align-items: center; /* Aligne verticalement le contenu dans les colonnes */
+    margin: 20px 0;
+
+}
+
+#season-image {
+    height: 700px;
+    width: 1200px;
+    border-radius: 60px;
+    margin-right: -120px;
+}
+
+.season-options {
+    display: flex;
+    flex-direction: column; /* Aligne les boutons verticalement */
+    justify-content: center;
+    margin-left: 50px;
+}
+
+
+/* Importer une police "bubbly" */
+@import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap');
+
+/* Appliquer la police "Pacifico" aux boutons */
+.season-button {
+    background-color: #ff6347;
+    color: white;
+    padding: 30px 90px;
+    margin: 25px;
+    border-radius: 10px;
+    font-size: 2.4em;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    font-family: 'Pacifico', cursive; /* Police bubbly */
+    letter-spacing: 1px; /* Un peu d'espacement pour l'effet gonflé */
+    text-shadow: 2px 2px 3px rgba(0, 0, 0, 0.2); /* Ajouter une légère ombre pour du relief */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Ombre pour donner un effet de bouton en relief */
+}
+
+/* Effet hover sur les boutons pour plus d'interaction */
+.season-button:hover {
+    background-color: #ff4500;
+    transform: scale(1.1); /* Agrandir légèrement les boutons au survol */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3); /* Augmenter l'ombre pour plus de profondeur */
+    color: #fff; /* Texte en blanc pour un effet net */
+}
+
+
+/* Feedback centré en dessous */
+#feedback-message {
+    grid-column: 1 / -1; /* Le feedback occupe les deux colonnes */
+    text-align: center; /* Centre le texte du feedback */
+    font-size: 1.5em;
+    margin-top: 5px;
+    margin-bottom: -15px;
+    font-weight: bold;
+}
+
+
+/* Correct and incorrect feedback */
+.correct {
+    background-color: green !important;
+}
+
+.incorrect {
+    background-color: red !important;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f4f4f9;
+    margin: 0;
+}
+
+
+
+body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f4f4f9;
+    margin: 0;
+}
+
+.game-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.game-board {
+    display: grid;
+    grid-template-columns: repeat(8, 270px); /* Grille 6x6 pour 36 cartes */
+    grid-template-rows: repeat(5, 180px);
+    gap: 15px;
+}
+
+.card {
+    width: 255px;
+    height: 135px;
+    background-color: #3498db;
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    position: relative;
+    transform-style: preserve-3d;
+    transition: transform 0.6s;
+    transform: rotateY(0deg);
+    font-size: 1.5em;
+}
+
+.card.flipped {
+    transform: rotateY(180deg);
+}
+
+.card .card-face {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+}
+
+.card .card-front {
+    background-color: #2ecc71;
+    font-size: 3em;
+    color: white;
+}
+
+.card .card-back {
+    background-color: #3498db;
+    font-size: 2.5em;
+    transform: rotateY(180deg);
+}
+
+/* Animation for matched cards */
+.card.matched {
+    visibility: hidden;
+}
+
+.info {
+    display: flex;
+    justify-content: space-between;
+    width: 80%;
+    margin-bottom: 20px;
+}
+
+#counter, #timer {
+    font-size: 1.5em;
+    font-weight: bold;
+}
+
+.win-message {
+    font-size: 2.5em;
+    color: green;
+    font-weight: bold;
+    visibility: hidden;
+    margin-top: 20px;
+}
+
+
+
+#matrix {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+}
+
+.cell {
+    width: 100px;
+    height: 100px;
+    border: 1px solid #000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    text-align: center;
+}
+
+#flags img {
+    width: 50px;
+    margin: 5px;
+    cursor: grab;
+}
+
+
+
+
+body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    background-color: #f0f8ff;
+}
+
+.game-container {
+    text-align: center;
+}
+
+.sentence-container {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+    user-select: none;
+}
+
+.word {
+    padding: 10px 15px;
+    border: 2px solid #333;
+    border-radius: 8px;
+    background-color: #fff;
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+
+.word.dragging {
+    opacity: 0.5;
+}
+
+#verify-button {
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #4caf50;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#result-message {
+    margin-top: 20px;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    transition: background-image 0.5s ease-in-out;
+    background-size: cover;
+    background-position: center;
+}
+
+.dynamic-background {
+    background-size: cover;
+    background-position: center;
+    height: 100vh;
+    width: 100vw;
+    position: relative;
+}
+
+/* Style for the intro section */
+.intro-section h1 {
+    font-size: 8rem; /* Larger size */
+    margin-top: 300px;
+    color: #007BFF; /* Blue color */
+    text-align: center;
+    margin-bottom: 20px;
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7); /* Text shadow for readability */
+    background-color: #f2ff81;
+}
+
+/* Style for the phrase display */
+#phrase-display {
+    font-size: 6rem; /* Larger text size */
+    font-family: "Brush Script MT", cursive; /* Script-like font */
+    color: rgb(255, 187, 0); /* Orange color */
+    text-shadow: 5px 5px 5px rgba(0, 0, 0, 0.5); /* Text shadow for better contrast */
+    margin: 20px 0;
+    text-align: center;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Ombre légère */
+    backdrop-filter: blur(5px); /* Effet de flou pour le fond */
+    background-color: rgba(158, 136, 89, 0.8); /* Fond blanc avec transparence */
+   
+    border-radius: 100px;
+    
+}
+
+/* Button styles */
+button {
+    display: inline-block;
+    background-color: #ff6347;
+    color: white;
+    padding: 40px 120px; /* Agrandir le bouton */
+    border-radius: 50px; /* Bouton arrondi */
+    text-decoration: none;
+    margin: 60px;
+    transition: background-color 0.3s ease, transform 0.3s ease; /* Transition pour un effet au survol */
+    font-size: 3.1em; /* Agrandir le texte */
+    font-weight: bold;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5); /* Ajouter une ombre */
+    text-align: center;
+}
+
+button:hover {
+    background-color: rgba(30, 170, 252, 0.9);
+}
+
+/* Hidden elements */
+.hidden {
+    display: none;
+}
+
+.footer-credit {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    padding: 10px 0;
+    font-size: 1em;
+    box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
+}
+
+

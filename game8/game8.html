@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Learning Land - Writing Practice</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Comic Sans MS', cursive;
+            background: linear-gradient(180deg, #87CEEB 0%, #E0F7FA 100%);
+            min-height: 100vh;
+            padding: 2rem;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            padding: 2rem;
+            border-radius: 20px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        h1 {
+            color: #FF6B6B;
+            text-align: center;
+            margin-bottom: 2rem;
+            font-size: 2.5rem;
+        }
+
+        .game-container {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .example-text {
+            font-size: 1.5rem;
+            padding: 1rem;
+            background: #f0f9ff;
+            border-radius: 10px;
+            border: 2px dashed #87CEEB;
+        }
+
+        .writing-area {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        textarea {
+            width: 100%;
+            height: 100px;
+            padding: 1rem;
+            font-size: 1.5rem;
+            border: 2px solid #87CEEB;
+            border-radius: 10px;
+            resize: none;
+            font-family: 'Comic Sans MS', cursive;
+        }
+
+        .buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+        }
+
+        button {
+            padding: 0.75rem 1.5rem;
+            font-size: 1.2rem;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            font-family: 'Comic Sans MS', cursive;
+            transition: transform 0.3s;
+        }
+
+        button:hover {
+            transform: scale(1.05);
+        }
+
+        #checkButton {
+            background: #4CAF50;
+            color: white;
+        }
+
+        #nextButton {
+            background: #FF9800;
+            color: white;
+        }
+
+        .feedback {
+            text-align: center;
+            font-size: 1.2rem;
+            min-height: 2rem;
+        }
+
+        .correct {
+            color: #4CAF50;
+        }
+
+        .incorrect {
+            color: #f44336;
+        }
+
+        .stars {
+            display: flex;
+            justify-content: center;
+            gap: 0.5rem;
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .home-button {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            padding: 0.5rem 1rem;
+            background: #FF6B6B;
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-size: 1.2rem;
+        }
+        /* Back Button */
+.back-button {
+    position: fixed;
+    bottom: 2rem;
+    left: 2rem;
+    background: white;
+    padding: 1rem 2rem;
+    border-radius: 30px;
+    text-decoration: none;
+    color: #333;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    box-shadow: 0 4px 0 rgba(0,0,0,0.1);
+    font-family: 'Bubblegum Sans', cursive;
+}
+
+.back-button:hover {
+    transform: scale(1.1);
+}
+
+.back-icon {
+    width: 30px;
+    height: 30px;
+}
+
+/* Wobble Animation */
+.wobble {
+    animation: wobble 2s infinite;
+}
+
+@keyframes wobble {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-5px) rotate(-5deg); }
+    75% { transform: translateX(5px) rotate(5deg); }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .rainbow-text {
+        font-size: 2rem;
+    }
+
+    .games-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+
+    .game-card {
+        padding: 1rem;
+    }
+
+    .icon {
+        width: 50px;
+        height: 50px;
+        font-size: 1.5rem;
+    }
+
+    .back-button {
+        bottom: 1rem;
+        left: 1rem;
+        padding: 0.8rem 1.5rem;
+    }
+}
+    </style>
+</head>
+<body>
+    <a href="/menu/menu.html" class="back-button wobble">
+        <img src="/images/back.png" alt="Back" class="back-icon">
+        <span>Go Back!</span>
+    </a>
+    
+    <div class="container">
+        <h1>Writing Practice</h1>
+        
+        <div class="stars">⭐⭐⭐</div>
+        
+        <div class="game-container">
+            <div class="example-text" id="currentSentence">
+                The cat sits on the mat.
+            </div>
+            
+            <div class="writing-area">
+                <textarea 
+                    id="userInput" 
+                    placeholder="Type the sentence here..."
+                    autocomplete="off"
+                    spellcheck="false"
+                ></textarea>
+                
+                <div class="feedback" id="feedback"></div>
+                
+                <div class="buttons">
+                    <button id="checkButton">Check Answer</button>
+                    <button id="nextButton">Next Sentence</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const sentences = [
+            "The cat sits on the mat.",
+            "I love to play with my toys.",
+            "The sun is shining bright today.",
+            "My dog likes to run in the park.",
+            "Birds fly high in the blue sky.",
+            "The rainbow has many colors.",
+            "I eat breakfast every morning.",
+            "Trees grow tall in the forest.",
+            "Fish swim in the clear water.",
+            "Stars twinkle at night time."
+        ];
+
+        let currentIndex = 0;
+        const currentSentence = document.getElementById('currentSentence');
+        const userInput = document.getElementById('userInput');
+        const feedback = document.getElementById('feedback');
+        const checkButton = document.getElementById('checkButton');
+        const nextButton = document.getElementById('nextButton');
+
+        function checkAnswer() {
+            const userText = userInput.value.trim();
+            const correctText = sentences[currentIndex];
+            
+            if (userText === correctText) {
+                feedback.textContent = "Perfect! Great job! 🎉";
+                feedback.className = "feedback correct";
+                playCorrectSound();
+            } else {
+                feedback.textContent = "Try again! Look carefully at the sentence.";
+                feedback.className = "feedback incorrect";
+            }
+        }
+
+        function nextSentence() {
+            currentIndex = (currentIndex + 1) % sentences.length;
+            currentSentence.textContent = sentences[currentIndex];
+            userInput.value = '';
+            feedback.textContent = '';
+            userInput.focus();
+        }
+
+        function playCorrectSound() {
+            // You can add a sound effect here if desired
+        }
+
+        checkButton.addEventListener('click', checkAnswer);
+        nextButton.addEventListener('click', nextSentence);
+
+        // Allow checking with Enter key
+        userInput.addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                checkAnswer();
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>What's The Theme? - Fun Learning Game</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Comic+Neue:wght@700&family=Bubblegum+Sans&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/related images/related.css">
+</head>
+<body>
+    <div class="game-container">
+        <h1 class="game-title">Can You Guess The Theme? 🤔</h1>
+        
+        <div class="score-display">
+            Score: <span id="score">0</span> 🌟
+        </div>
+
+        <div class="images-container" id="imagesContainer">
+            <!-- Images will be inserted here by JavaScript -->
+        </div>
+
+        <div class="input-section">
+            <div id="choicesContainer" class="choices-container">
+                <!-- Job choices will be inserted here by JavaScript -->
+            </div>
+        </div>
+
+        <div id="feedback" class="feedback-message"></div>
+
+        <div class="hint-section">
+            <button onclick="showHint()" class="hint-button">
+                Need a Hint? 💡
+            </button>
+            <p id="hintText" class="hint-text"></p>
+        </div>
+
+        <button onclick="nextQuestion()" class="next-button" id="nextButton" style="display: none;">
+            Next Theme! 👉
+        </button>
+
+        <a href="/menu/menu.html" class="back-button wobble">
+            <img src="/images/back.png" alt="Back" class="back-icon">
+            <span>Go Back!</span>
+        </a>
+    </div>
+
+    <!-- Add audio elements for correct and wrong answers -->
+    <audio id="correctSound" src="/flags/sounds/correct.mp3"></audio>
+    <audio id="wrongSound" src="/flags/sounds/wrong.mp3"></audio>
+    <script src="/related images/related.js"></script>
+</body>
+</html>
